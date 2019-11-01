@@ -1,0 +1,5 @@
+*.user
+*.pfx
+*.vs
+/MediaRemoteMe/bin
+/MediaRemoteMe/obj

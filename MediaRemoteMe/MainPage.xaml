@@ -1,0 +1,441 @@
+﻿<Page
+    x:Class="MediaRemoteMe.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MediaRemoteMe"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <!-- Page Grid -->
+    <Grid Name="grid_Main" Opacity="0.60" IsHitTestVisible="False">
+        <!-- Page Menu -->
+        <Grid Name="page_Menu" Background="#1D1D1D">
+            <ScrollViewer Name="menu_ScrollViewer">
+                <StackPanel Name="menu_StackPanel">
+                    <StackPanel Name="menuButtonRemote" Width="85" Height="85" Tapped="menuButtonRemote_Tapped">
+                        <Image Source="Assets/Menu/Remote.png" Width="60" HorizontalAlignment="Center"/>
+                        <TextBlock Text="Remote" Style="{StaticResource TextBlockWhite}" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                    <StackPanel Name="menuButtonKeyboard" Width="85" Height="85" Tapped="menuButtonKeyboard_Tapped">
+                        <Image Source="Assets/Menu/Keyboard.png" Width="60" HorizontalAlignment="Center"/>
+                        <TextBlock Text="Keyboard" Style="{StaticResource TextBlockWhite}" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                    <StackPanel Name="menuButtonTiles" Width="85" Height="85" Tapped="menuButtonTiles_Tapped">
+                        <Image Source="Assets/Menu/Tiles.png" Width="60" HorizontalAlignment="Center"/>
+                        <TextBlock Text="Tiles" Style="{StaticResource TextBlockWhite}" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                    <StackPanel Name="menuButtonNfc" Width="85" Height="85" Tapped="menuButtonNfc_Tapped">
+                        <Image Source="Assets/Menu/Nfc.png" Width="60" HorizontalAlignment="Center"/>
+                        <TextBlock Text="Nfc Tag" Style="{StaticResource TextBlockWhite}" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                    <StackPanel Name="menuButtonSettings" Width="85" Height="85" Tapped="menuButtonSettings_Tapped">
+                        <Image Source="Assets/Menu/Settings.png" Width="60" HorizontalAlignment="Center"/>
+                        <TextBlock Text="Settings" Style="{StaticResource TextBlockWhite}" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                    <StackPanel Name="menuButtonHelp" Width="85" Height="85" Tapped="menuButtonHelp_Tapped">
+                        <Image Source="Assets/Menu/Help.png" Width="60" HorizontalAlignment="Center"/>
+                        <TextBlock Text="Help" Style="{StaticResource TextBlockWhite}" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+
+        <!-- Page Main -->
+        <Grid Name="page_Main" Background="#E1E1E1">
+            <!-- Page Statusbar -->
+            <StackPanel Name="app_StatusBar" Visibility="Collapsed" Background="#1D1D1D" Opacity="0.75" VerticalAlignment="Top" Canvas.ZIndex="1">
+                <TextBlock Name="txt_AppStatusDesc" Style="{StaticResource TextBlockWhite}" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+                <ProgressBar IsIndeterminate="True" VerticalAlignment="Top"/>
+            </StackPanel>
+
+            <!-- Page Remote -->
+            <Grid Name="tab_Remote" Visibility="Collapsed">
+                <ScrollViewer Style="{StaticResource ScrollViewerVertical}">
+                    <StackPanel Name="stackpanel_Remote" Margin="10,10,10,10">
+                        <!-- Upper Row -->
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                            <Grid Width="95" Height="95"/>
+                            <Grid Background="{StaticResource SystemControlBackgroundAccentBrush}" HorizontalAlignment="Left" Tag="Stop" Tapped="MediaBox_Tap" Margin="5,0,0,0">
+                                <Image Source="Assets/Tiles/Stop.png" Height="95" Width="95"/>
+                            </Grid>
+                        </StackPanel>
+
+                        <!-- Top Row -->
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                            <Grid Background="{StaticResource SystemControlBackgroundAccentBrush}" HorizontalAlignment="Left" Tag="ArrowLeft" Tapped="MediaBox_Tap">
+                                <Image Source="Assets/Tiles/ArrowLeft.png" Height="95" Width="95"/>
+                            </Grid>
+                            <Grid Background="{StaticResource SystemControlBackgroundAccentBrush}" HorizontalAlignment="Left" Tag="VolUp" Tapped="MediaBox_Tap" Margin="5,0,0,0">
+                                <Image Source="Assets/Tiles/VolUp.png" Height="95" Width="95"/>
+                            </Grid>
+                            <Grid Background="{StaticResource SystemControlBackgroundAccentBrush}" HorizontalAlignment="Left" Tag="ArrowRight" Tapped="MediaBox_Tap" Margin="5,0,0,0">
+                                <Image Source="Assets/Tiles/ArrowRight.png" Height="95" Width="95"/>
+                            </Grid>
+                        </StackPanel>
+
+                        <!-- Middle Row -->
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                            <Grid Background="{StaticResource SystemControlBackgroundAccentBrush}" HorizontalAlignment="Left" Tag="PrevSong" Tapped="MediaBox_Tap">
+                                <Image Source="Assets/Tiles/Previous.png" Height="95" Width="95"/>
+                            </Grid>
+                            <Grid Background="{StaticResource SystemControlBackgroundAccentBrush}" HorizontalAlignment="Left" Tag="PlayPause" Tapped="MediaBox_Tap" Margin="5,0,0,0">
+                                <Image Source="Assets/Tiles/PlayPause.png" Height="95" Width="95"/>
+                            </Grid>
+                            <Grid Background="{StaticResource SystemControlBackgroundAccentBrush}" HorizontalAlignment="Left" Tag="NextSong" Tapped="MediaBox_Tap" Margin="5,0,0,0">
+                                <Image Source="Assets/Tiles/Next.png" Height="95" Width="95"/>
+                            </Grid>
+                        </StackPanel>
+
+                        <!-- Bottom Row -->
+                        <StackPanel Orientation="Horizontal">
+                            <Grid Background="{StaticResource SystemControlBackgroundAccentBrush}" HorizontalAlignment="Left" Tag="Fullscreen" Tapped="MediaBox_Tap">
+                                <Image Source="Assets/Tiles/Fullscreen.png" Height="95" Width="95"/>
+                            </Grid>
+                            <Grid Background="{StaticResource SystemControlBackgroundAccentBrush}" HorizontalAlignment="Left" Tag="VolDown" Tapped="MediaBox_Tap" Margin="5,0,0,0">
+                                <Image Source="Assets/Tiles/VolDown.png" Height="95" Width="95"/>
+                            </Grid>
+                            <Grid Background="{StaticResource SystemControlBackgroundAccentBrush}" HorizontalAlignment="Left" Tag="VolMute" Tapped="MediaBox_Tap" Margin="5,0,0,0">
+                                <Image Source="Assets/Tiles/VolMute.png" Height="95" Width="95"/>
+                            </Grid>
+                        </StackPanel>
+
+                        <!-- Warning Text -->
+                        <TextBlock Name="txt_ErrorConnect" Visibility="Collapsed" Margin="0,10,0,0" Text="* It seems like you are currently using a Windows PC as client, please make sure that Arnold Vink Tools has run once as Administrator on this PC to allow the remote controls to be sent out to your server, if you have not done this once the remote might not work properly." Style="{StaticResource TextBlockAccent}" TextWrapping="Wrap"/>
+                    </StackPanel>
+                </ScrollViewer>
+            </Grid>
+
+            <!-- Page Keyboard -->
+            <Grid Name="tab_Keyboard" Visibility="Collapsed">
+                <ScrollViewer Style="{StaticResource ScrollViewerVertical}">
+                    <StackPanel Name="stackpanel_Keyboard" Margin="10,10,10,10">
+                        <!-- Keyboard Arrows -->
+                        <StackPanel Name="stackpanel_KeyboardArrows">
+                            <!-- Upper Row -->
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                                <Grid Width="95" Height="95"/>
+                                <Grid Background="{StaticResource SystemControlBackgroundAccentBrush}" HorizontalAlignment="Left" Tag="Space" Tapped="MediaBox_Tap" Margin="5,0,0,0">
+                                    <TextBlock Text="Space" Style="{StaticResource TextBlockButtonWhite}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <Image Source="Assets/Tiles/Button.png" Height="95" Width="95"/>
+                                </Grid>
+                            </StackPanel>
+
+                            <!-- Top Row -->
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                                <Grid Background="{StaticResource SystemControlBackgroundAccentBrush}" HorizontalAlignment="Left" Tag="Esc" Tapped="MediaBox_Tap">
+                                    <TextBlock Text="Esc" Style="{StaticResource TextBlockButtonWhite}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <Image Source="Assets/Tiles/Button.png" Height="95" Width="95"/>
+                                </Grid>
+                                <Grid Background="{StaticResource SystemControlBackgroundAccentBrush}" HorizontalAlignment="Left" Tag="ArrowUp" Tapped="MediaBox_Tap" Margin="5,0,0,0">
+                                    <Image Source="Assets/Tiles/ArrowUp.png" Height="95" Width="95"/>
+                                </Grid>
+                                <Grid Background="{StaticResource SystemControlBackgroundAccentBrush}" HorizontalAlignment="Left" Tag="AltTab" Tapped="MediaBox_Tap" Margin="5,0,0,0">
+                                    <TextBlock Text="Alt&#10;Tab" Style="{StaticResource TextBlockButtonWhite}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <Image Source="Assets/Tiles/Button.png" Height="95" Width="95"/>
+                                </Grid>
+                            </StackPanel>
+
+                            <!-- Middle Row -->
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                                <Grid Background="{StaticResource SystemControlBackgroundAccentBrush}" HorizontalAlignment="Left" Tag="ArrowLeft" Tapped="MediaBox_Tap">
+                                    <Image Source="Assets/Tiles/ArrowLeft.png" Height="95" Width="95"/>
+                                </Grid>
+                                <Grid Background="{StaticResource SystemControlBackgroundAccentBrush}" HorizontalAlignment="Left" Tag="Enter" Tapped="MediaBox_Tap" Margin="5,0,0,0">
+                                    <TextBlock Text="Enter" Style="{StaticResource TextBlockButtonWhite}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <Image Source="Assets/Tiles/Button.png" Height="95" Width="95"/>
+                                </Grid>
+                                <Grid Background="{StaticResource SystemControlBackgroundAccentBrush}" HorizontalAlignment="Left" Tag="ArrowRight" Tapped="MediaBox_Tap" Margin="5,0,0,0">
+                                    <Image Source="Assets/Tiles/ArrowRight.png" Height="95" Width="95"/>
+                                </Grid>
+                            </StackPanel>
+
+                            <!-- Bottom Row -->
+                            <StackPanel Orientation="Horizontal">
+                                <Grid Background="{StaticResource SystemControlBackgroundAccentBrush}" HorizontalAlignment="Left" Tag="BackSpace" Tapped="MediaBox_Tap">
+                                    <TextBlock Text="Back&#10;Space" Style="{StaticResource TextBlockButtonWhite}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <Image Source="Assets/Tiles/Button.png" Height="95" Width="95"/>
+                                </Grid>
+                                <Grid Background="{StaticResource SystemControlBackgroundAccentBrush}" HorizontalAlignment="Left" Tag="ArrowDown" Tapped="MediaBox_Tap" Margin="5,0,0,0">
+                                    <Image Source="Assets/Tiles/ArrowDown.png" Height="95" Width="95"/>
+                                </Grid>
+                                <Grid Background="{StaticResource SystemControlBackgroundAccentBrush}" HorizontalAlignment="Left" Tag="Menu" Tapped="MediaBox_Tap" Margin="5,0,0,0">
+                                    <TextBlock Text="Menu&#10;(Alt/C)" Style="{StaticResource TextBlockButtonWhite}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <Image Source="Assets/Tiles/Button.png" Height="95" Width="95"/>
+                                </Grid>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <!-- Keyboard Numeric -->
+                        <StackPanel Name="stackpanel_KeyboardNumeric" Visibility="Collapsed">
+                            <!-- Top Row -->
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                                <Grid Background="{StaticResource SystemControlBackgroundAccentBrush}" HorizontalAlignment="Left" Tag="1" Tapped="MediaBox_Tap">
+                                    <TextBlock Text="1" Style="{StaticResource TextBlockButtonNumericWhite}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <Image Source="Assets/Tiles/Button.png" Height="95" Width="95"/>
+                                </Grid>
+                                <Grid Background="{StaticResource SystemControlBackgroundAccentBrush}" HorizontalAlignment="Left" Tag="2" Tapped="MediaBox_Tap" Margin="5,0,0,0">
+                                    <TextBlock Text="2" Style="{StaticResource TextBlockButtonNumericWhite}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <Image Source="Assets/Tiles/Button.png" Height="95" Width="95"/>
+                                </Grid>
+                                <Grid Background="{StaticResource SystemControlBackgroundAccentBrush}" HorizontalAlignment="Left" Tag="3" Tapped="MediaBox_Tap" Margin="5,0,0,0">
+                                    <TextBlock Text="3" Style="{StaticResource TextBlockButtonNumericWhite}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <Image Source="Assets/Tiles/Button.png" Height="95" Width="95"/>
+                                </Grid>
+                            </StackPanel>
+
+                            <!-- Middle Row -->
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                                <Grid Background="{StaticResource SystemControlBackgroundAccentBrush}" HorizontalAlignment="Left" Tag="4" Tapped="MediaBox_Tap">
+                                    <TextBlock Text="4" Style="{StaticResource TextBlockButtonNumericWhite}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <Image Source="Assets/Tiles/Button.png" Height="95" Width="95"/>
+                                </Grid>
+                                <Grid Background="{StaticResource SystemControlBackgroundAccentBrush}" HorizontalAlignment="Left" Tag="5" Tapped="MediaBox_Tap" Margin="5,0,0,0">
+                                    <TextBlock Text="5" Style="{StaticResource TextBlockButtonNumericWhite}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <Image Source="Assets/Tiles/Button.png" Height="95" Width="95"/>
+                                </Grid>
+                                <Grid Background="{StaticResource SystemControlBackgroundAccentBrush}" HorizontalAlignment="Left" Tag="6" Tapped="MediaBox_Tap" Margin="5,0,0,0">
+                                    <TextBlock Text="6" Style="{StaticResource TextBlockButtonNumericWhite}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <Image Source="Assets/Tiles/Button.png" Height="95" Width="95"/>
+                                </Grid>
+                            </StackPanel>
+
+                            <!-- Bottom Row -->
+                            <StackPanel Orientation="Horizontal">
+                                <Grid Background="{StaticResource SystemControlBackgroundAccentBrush}" HorizontalAlignment="Left" Tag="7" Tapped="MediaBox_Tap">
+                                    <TextBlock Text="7" Style="{StaticResource TextBlockButtonNumericWhite}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <Image Source="Assets/Tiles/Button.png" Height="95" Width="95"/>
+                                </Grid>
+                                <Grid Background="{StaticResource SystemControlBackgroundAccentBrush}" HorizontalAlignment="Left" Tag="8" Tapped="MediaBox_Tap" Margin="5,0,0,0">
+                                    <TextBlock Text="8" Style="{StaticResource TextBlockButtonNumericWhite}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <Image Source="Assets/Tiles/Button.png" Height="95" Width="95"/>
+                                </Grid>
+                                <Grid Background="{StaticResource SystemControlBackgroundAccentBrush}" HorizontalAlignment="Left" Tag="9" Tapped="MediaBox_Tap" Margin="5,0,0,0">
+                                    <TextBlock Text="9" Style="{StaticResource TextBlockButtonNumericWhite}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <Image Source="Assets/Tiles/Button.png" Height="95" Width="95"/>
+                                </Grid>
+                            </StackPanel>
+
+                            <!-- Extra Row -->
+                            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                                <Grid Background="{StaticResource SystemControlBackgroundAccentBrush}" HorizontalAlignment="Left" Tag="Tab" Tapped="MediaBox_Tap">
+                                    <TextBlock Text="Tab" Style="{StaticResource TextBlockButtonWhite}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <Image Source="Assets/Tiles/Button.png" Height="95" Width="95"/>
+                                </Grid>
+                                <Grid Background="{StaticResource SystemControlBackgroundAccentBrush}" HorizontalAlignment="Left" Tag="0" Tapped="MediaBox_Tap" Margin="5,0,0,0">
+                                    <TextBlock Text="0" Style="{StaticResource TextBlockButtonNumericWhite}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <Image Source="Assets/Tiles/Button.png" Height="95" Width="95"/>
+                                </Grid>
+                                <Grid Background="{StaticResource SystemControlBackgroundAccentBrush}" HorizontalAlignment="Left" Tag="Enter" Tapped="MediaBox_Tap" Margin="5,0,0,0">
+                                    <TextBlock Text="Enter" Style="{StaticResource TextBlockButtonWhite}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <Image Source="Assets/Tiles/Button.png" Height="95" Width="95"/>
+                                </Grid>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <!-- Keyboard Switch -->
+                        <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                            <Button Name="btn_KeyboardSwitchArrows" Style="{StaticResource ButtonAccent}" Content="Show Arrows" Click="btn_KeyboardSwitchArrows_Click" />
+                            <Button Name="btn_KeyboardSwitchNumeric" Style="{StaticResource ButtonAccent}" Content="Show Numeric" Margin="10,0,0,0" Click="btn_KeyboardSwitchNumeric_Click"/>
+                        </StackPanel>
+
+                        <!-- Warning Text -->
+                        <TextBlock Name="txt_ErrorConnect2" Visibility="Collapsed" Margin="0,10,0,0" Text="* It seems like you are currently using a Windows PC as client, please make sure that Arnold Vink Tools has run once as Administrator on this PC to allow the remote controls to be sent out to your server, if you have not done this once the remote might not work properly." Style="{StaticResource TextBlockAccent}" TextWrapping="Wrap"/>
+                    </StackPanel>
+                </ScrollViewer>
+            </Grid>
+
+            <!-- Page Tiles -->
+            <Grid Name="tab_Tiles" Visibility="Collapsed">
+                <ScrollViewer Style="{StaticResource ScrollViewerVertical}">
+                    <StackPanel Margin="10,10,10,10">
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Grid Background="{StaticResource SystemControlBackgroundAccentBrush}" HorizontalAlignment="Left">
+                                    <Image Source="Assets/Tiles/PlayPause.png" Height="25"/>
+                                </Grid>
+                                <Button Name="btn_PinPlayPause" Style="{StaticResource ButtonAccent}" Content="Pin Play or Pause" Margin="5,0,0,0" Click="btn_PinPlayPause_Click" />
+                            </StackPanel>
+                            <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                                <Grid Background="{StaticResource SystemControlBackgroundAccentBrush}" HorizontalAlignment="Left">
+                                    <Image Source="Assets/Tiles/Previous.png" Height="25"/>
+                                </Grid>
+                                <Button Name="btn_PinPrevious" Style="{StaticResource ButtonAccent}" Content="Pin Previous Item" Margin="5,0,0,0" Click="btn_PinPrevious_Click" />
+                            </StackPanel>
+                            <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                                <Grid Background="{StaticResource SystemControlBackgroundAccentBrush}" HorizontalAlignment="Left">
+                                    <Image Source="Assets/Tiles/Next.png" Height="25"/>
+                                </Grid>
+                                <Button Name="btn_PinNext" Style="{StaticResource ButtonAccent}" Content="Pin Next Item" Margin="5,0,0,0" Click="btn_PinNext_Click" />
+                            </StackPanel>
+
+                            <StackPanel Margin="0,20,0,0" Orientation="Horizontal">
+                                <Grid Background="{StaticResource SystemControlBackgroundAccentBrush}" HorizontalAlignment="Left">
+                                    <Image Source="Assets/Tiles/VolUp.png" Height="25"/>
+                                </Grid>
+                                <Button Name="btn_PinVolUp" Style="{StaticResource ButtonAccent}" Content="Pin Volume Up" Margin="5,0,0,0" Click="btn_PinVolUp_Click" />
+                            </StackPanel>
+                            <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                                <Grid Background="{StaticResource SystemControlBackgroundAccentBrush}" HorizontalAlignment="Left">
+                                    <Image Source="Assets/Tiles/VolDown.png" Height="25"/>
+                                </Grid>
+                                <Button Name="btn_PinVolDown" Style="{StaticResource ButtonAccent}" Content="Pin Volume Down" Margin="5,0,0,0" Click="btn_PinVolDown_Click" />
+                            </StackPanel>
+                            <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                                <Grid Background="{StaticResource SystemControlBackgroundAccentBrush}" HorizontalAlignment="Left">
+                                    <Image Source="Assets/Tiles/VolMute.png" Height="25"/>
+                                </Grid>
+                                <Button Name="btn_PinVolMute" Style="{StaticResource ButtonAccent}" Content="Pin Volume Mute" Margin="5,0,0,0" Click="btn_PinVolMute_Click" />
+                            </StackPanel>
+
+                            <StackPanel Margin="0,20,0,0" Orientation="Horizontal">
+                                <Grid Background="{StaticResource SystemControlBackgroundAccentBrush}" HorizontalAlignment="Left">
+                                    <Image Source="Assets/Tiles/ArrowLeft.png" Height="25"/>
+                                </Grid>
+                                <Button Name="btn_PinArrowLeft" Style="{StaticResource ButtonAccent}" Content="Pin Arrow Left" Margin="5,0,0,0" Click="btn_PinArrowLeft_Click" />
+                            </StackPanel>
+                            <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                                <Grid Background="{StaticResource SystemControlBackgroundAccentBrush}" HorizontalAlignment="Left">
+                                    <Image Source="Assets/Tiles/ArrowRight.png" Height="25"/>
+                                </Grid>
+                                <Button Name="btn_PinArrowRight" Style="{StaticResource ButtonAccent}" Content="Pin Arrow Right" Margin="5,0,0,0" Click="btn_PinArrowRight_Click" />
+                            </StackPanel>
+
+                            <StackPanel Margin="0,20,0,0" Orientation="Horizontal">
+                                <Grid Background="{StaticResource SystemControlBackgroundAccentBrush}" HorizontalAlignment="Left">
+                                    <Image Source="Assets/Tiles/Fullscreen.png" Height="25"/>
+                                </Grid>
+                                <Button Name="btn_PinFullscreen" Style="{StaticResource ButtonAccent}" Content="Pin Fullscreen" Margin="5,0,0,0" Click="btn_PinFullscreen_Click" />
+                            </StackPanel>
+
+                            <Button Name="btn_UnpinAllTiles" Style="{StaticResource ButtonAccent}" Content="Unpin all media tiles" Margin="0,20,0,0" Click="btn_UnpinAllTiles_Click"/>
+                        </StackPanel>
+                    </StackPanel>
+                </ScrollViewer>
+            </Grid>
+
+            <!-- Page Nfc -->
+            <Grid Name="tab_Nfc" Visibility="Collapsed">
+                <ScrollViewer Style="{StaticResource ScrollViewerVertical}">
+                    <StackPanel Margin="10,10,10,10">
+                        <StackPanel Name="sp_Nfc">
+                            <StackPanel Orientation="Horizontal">
+                                <Grid Background="{StaticResource SystemControlBackgroundAccentBrush}" HorizontalAlignment="Left">
+                                    <Image Source="Assets/Tiles/PlayPause.png" Height="25"/>
+                                </Grid>
+                                <Button Name="btn_NfcPlayPause" Style="{StaticResource ButtonAccent}" Content="Write Play or Pause" Margin="5,0,0,0" Tag="NfcPlayPause" Click="btn_WriteNFCTag_Click" />
+                            </StackPanel>
+                            <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                                <Grid Background="{StaticResource SystemControlBackgroundAccentBrush}" HorizontalAlignment="Left">
+                                    <Image Source="Assets/Tiles/Previous.png" Height="25"/>
+                                </Grid>
+                                <Button Name="btn_NfcPrevious" Style="{StaticResource ButtonAccent}" Content="Write Previous Item" Margin="5,0,0,0" Tag="NfcPrevious" Click="btn_WriteNFCTag_Click" />
+                            </StackPanel>
+                            <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                                <Grid Background="{StaticResource SystemControlBackgroundAccentBrush}" HorizontalAlignment="Left">
+                                    <Image Source="Assets/Tiles/Next.png" Height="25"/>
+                                </Grid>
+                                <Button Name="btn_NfcNext" Style="{StaticResource ButtonAccent}" Content="Write Next Item" Margin="5,0,0,0" Tag="NfcNext" Click="btn_WriteNFCTag_Click" />
+                            </StackPanel>
+
+                            <StackPanel Margin="0,20,0,0" Orientation="Horizontal">
+                                <Grid Background="{StaticResource SystemControlBackgroundAccentBrush}" HorizontalAlignment="Left">
+                                    <Image Source="Assets/Tiles/VolUp.png" Height="25"/>
+                                </Grid>
+                                <Button Name="btn_NfcVolUp" Style="{StaticResource ButtonAccent}" Content="Write Volume Up" Margin="5,0,0,0" Tag="NfcVolUp" Click="btn_WriteNFCTag_Click" />
+                            </StackPanel>
+                            <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                                <Grid Background="{StaticResource SystemControlBackgroundAccentBrush}" HorizontalAlignment="Left">
+                                    <Image Source="Assets/Tiles/VolDown.png" Height="25"/>
+                                </Grid>
+                                <Button Name="btn_NfcVolDown" Style="{StaticResource ButtonAccent}" Content="Write Volume Down" Margin="5,0,0,0" Tag="NfcVolDown" Click="btn_WriteNFCTag_Click" />
+                            </StackPanel>
+                            <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                                <Grid Background="{StaticResource SystemControlBackgroundAccentBrush}" HorizontalAlignment="Left">
+                                    <Image Source="Assets/Tiles/VolMute.png" Height="25"/>
+                                </Grid>
+                                <Button Name="btn_NfcVolMute" Style="{StaticResource ButtonAccent}" Content="Write Volume Mute" Margin="5,0,0,0" Tag="NfcVolMute" Click="btn_WriteNFCTag_Click" />
+                            </StackPanel>
+
+                            <StackPanel Margin="0,20,0,0" Orientation="Horizontal">
+                                <Grid Background="{StaticResource SystemControlBackgroundAccentBrush}" HorizontalAlignment="Left">
+                                    <Image Source="Assets/Tiles/ArrowLeft.png" Height="25"/>
+                                </Grid>
+                                <Button Name="btn_NfcArrowLeft" Style="{StaticResource ButtonAccent}" Content="Write Arrow Left" Margin="5,0,0,0" Tag="NfcArrowLeft" Click="btn_WriteNFCTag_Click" />
+                            </StackPanel>
+                            <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                                <Grid Background="{StaticResource SystemControlBackgroundAccentBrush}" HorizontalAlignment="Left">
+                                    <Image Source="Assets/Tiles/ArrowRight.png" Height="25"/>
+                                </Grid>
+                                <Button Name="btn_NfcArrowRight" Style="{StaticResource ButtonAccent}" Content="Write Arrow Right" Margin="5,0,0,0" Tag="NfcArrowRight" Click="btn_WriteNFCTag_Click" />
+                            </StackPanel>
+
+                            <StackPanel Margin="0,20,0,0" Orientation="Horizontal">
+                                <Grid Background="{StaticResource SystemControlBackgroundAccentBrush}" HorizontalAlignment="Left">
+                                    <Image Source="Assets/Tiles/Fullscreen.png" Height="25"/>
+                                </Grid>
+                                <Button Name="btn_NfcFullscreen" Style="{StaticResource ButtonAccent}" Content="Write Fullscreen" Margin="5,0,0,0" Tag="NfcFullscreen" Click="btn_WriteNFCTag_Click" />
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </ScrollViewer>
+            </Grid>
+
+            <!-- Page Settings -->
+            <Grid Name="tab_Settings" Visibility="Collapsed">
+                <ScrollViewer Style="{StaticResource ScrollViewerVertical}">
+                    <StackPanel Margin="10,10,10,10">
+                        <TextBlock Text="Screen settings" Style="{StaticResource TextBlockPageTitleBlack}"/>
+                        <CheckBox Name="cb_ScreenAlwaysOn" Content="Let the device screen always on" Style="{StaticResource CheckBox}"></CheckBox>
+                        <TextBlock Text="Enabling this will keep your device from turning off the screen so you can always quickly access the remote." TextWrapping="Wrap" Style="{StaticResource TextBlockLightGray}"/>
+
+                        <TextBlock Text="Remote buttons location" Margin="0,15,0,0" Style="{StaticResource TextBlockBlack}"/>
+                        <TextBlock Text="The following selection will be used as location for the media remote buttons on your device's screen." TextWrapping="Wrap" Style="{StaticResource TextBlockLightGray}"/>
+                        <ComboBox Name="lp_SettingRemoteLocation" Width="250" HorizontalAlignment="Left" Style="{StaticResource ComboBox}">
+                            <ComboBoxItem Content="Top"/>
+                            <ComboBoxItem Content="Center"/>
+                            <ComboBoxItem Content="Bottom"/>
+                        </ComboBox>
+
+                        <TextBlock Text="Volume settings" Margin="0,15,0,0" Style="{StaticResource TextBlockPageTitleBlack}"/>
+                        <TextBlock Text="This setting will change the volume amount that will be applied on your PC." TextWrapping="Wrap" Style="{StaticResource TextBlockLightGray}"/>
+                        <Slider Name="sldr_Volume" HorizontalAlignment="Left" Minimum="2" Maximum="100" StepFrequency="2" Width="250"/>
+
+                        <TextBlock Text="Tile and Voice settings" Margin="0,5,0,0" Style="{StaticResource TextBlockPageTitleBlack}"/>
+                        <CheckBox Name="cb_CmdCloseApp" Content="Close app after sending media key" Style="{StaticResource CheckBox}"></CheckBox>
+                        <TextBlock Text="Enabling this will close the application after clicking on a pinned tile or using a Cortana voice command." TextWrapping="Wrap" Style="{StaticResource TextBlockLightGray}"/>
+
+                        <TextBlock Text="Server ip adres" Margin="0,15,0,0" Style="{StaticResource TextBlockPageTitleBlack}"/>
+                        <TextBlock Text="Enter the PC's IP adres from where Arnold Vink Tools is running." TextWrapping="Wrap" Style="{StaticResource TextBlockLightGray}"/>
+                        <TextBox Name="txtbox_ServerIp" Style="{StaticResource TextBox}" InputScope="Number"/>
+
+                        <TextBlock Text="Server port" Margin="0,15,0,0" Style="{StaticResource TextBlockPageTitleBlack}"/>
+                        <TextBlock Text="Enter the server port Arnold Vink Tools is using on your PC." TextWrapping="Wrap" Style="{StaticResource TextBlockLightGray}"/>
+                        <TextBox Name="txtbox_ServerPort" Style="{StaticResource TextBox}" InputScope="Number"/>
+
+                        <TextBlock Name="txt_ErrorWifi" Margin="0,15,0,0" Visibility="Collapsed" Text="* It seems like you are currently not connected to a network, please make sure that you are connected to the same network as where Arnold Vink Tools is running or that the correct server port is forwarded to your pc in the router for external internet access." Style="{StaticResource TextBlockAccent}" TextWrapping="Wrap"/>
+                        <TextBlock Name="txt_ErrorPC" Margin="0,15,0,0" Visibility="Collapsed" Text="* It seems like you are currently using a Windows PC as client, please make sure that Arnold Vink Tools has run once as Administrator on this PC to allow the remote controls to be sent out to your server, if you have not done this once the remote might not work properly." Style="{StaticResource TextBlockAccent}" TextWrapping="Wrap"/>
+
+                        <Button Style="{StaticResource ButtonAccent}" Content="Open Wi-Fi Network Settings" Margin="0,20,0,0" Click="SettingsOpenWiFiSettings_Click"/>
+                        <Button Style="{StaticResource ButtonAccent}" Content="Open NFC / Proximity Settings" Margin="0,10,0,0" Click="SettingsOpenNFCSettings_Click"/>
+
+                        <Button Style="{StaticResource ButtonAccent}" Content="Visit Project Website" Margin="0,20,0,0" Click="SettingsOpenProjectWebsite_Click" />
+                        <Button Style="{StaticResource ButtonAccent}" Content="Open Donation Page" Margin="0,10,0,0" Click="SettingsOpenDonationPage_Click" />
+                    </StackPanel>
+                </ScrollViewer>
+            </Grid>
+
+            <!-- Page Help -->
+            <Grid Name="tab_Help" Visibility="Collapsed">
+                <ScrollViewer Style="{StaticResource ScrollViewerVertical}">
+                    <StackPanel Margin="10,10,10,10">
+                        <StackPanel Name="sp_Help" Margin="0,0,10,0"/>
+                        <Button Style="{StaticResource ButtonAccent}" Content="Visit Project Website" Margin="0,20,0,0" Click="SettingsOpenProjectWebsite_Click" />
+                        <Button Style="{StaticResource ButtonAccent}" Content="Open Donation Page" Margin="0,10,0,0" Click="SettingsOpenDonationPage_Click" />
+                        <Button Style="{StaticResource ButtonAccent}" Content="Open Privacy Policy" Margin="0,10,0,0" Click="SettingsOpenPrivacyPolicy_Click"/>
+                    </StackPanel>
+                </ScrollViewer>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

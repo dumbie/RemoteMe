@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VoiceCommands xmlns="http://schemas.microsoft.com/voicecommands/1.1">
+  <CommandSet xml:lang="en-us" Name="en-us">
+    <CommandPrefix>Remote</CommandPrefix>
+    <Example>Send media keys remotely</Example>
+
+    <Command Name="MediaRemoteMePlay">
+      <Example>Remote Play</Example>
+      <ListenFor>play</ListenFor>
+      <Feedback>Sending Play or Pause media key</Feedback>
+      <Navigate Target="MainPage"/>
+    </Command>
+
+    <Command Name="MediaRemoteMeResume">
+      <Example>Remote Resume</Example>
+      <ListenFor>resume</ListenFor>
+      <Feedback>Sending Play or Pause media key</Feedback>
+      <Navigate Target="MainPage"/>
+    </Command>
+
+    <Command Name="MediaRemoteMePause">
+      <Example>Remote Pause</Example>
+      <ListenFor>pause</ListenFor>
+      <Feedback>Sending Play or Pause media key</Feedback>
+      <Navigate Target="MainPage"/>
+    </Command>
+
+    <Command Name="MediaRemoteMeStop">
+      <Example>Remote Stop</Example>
+      <ListenFor>stop</ListenFor>
+      <Feedback>Sending Play or Pause media key</Feedback>
+      <Navigate Target="MainPage"/>
+    </Command>
+
+    <Command Name="MediaRemoteMePrevious">
+      <Example>Remote Previous</Example>
+      <ListenFor>previous</ListenFor>
+      <Feedback>Sending Previous media key</Feedback>
+      <Navigate Target="MainPage"/>
+    </Command>
+
+    <Command Name="MediaRemoteMeBack">
+      <Example>Remote Back</Example>
+      <ListenFor>back</ListenFor>
+      <Feedback>Sending Previous media key</Feedback>
+      <Navigate Target="MainPage"/>
+    </Command>
+
+    <Command Name="MediaRemoteMeLeft">
+      <Example>Remote Left</Example>
+      <ListenFor>left</ListenFor>
+      <Feedback>Sending Previous media key</Feedback>
+      <Navigate Target="MainPage"/>
+    </Command>
+
+    <Command Name="MediaRemoteMeNext">
+      <Example>Remote Next</Example>
+      <ListenFor>next</ListenFor>
+      <Feedback>Sending Next media key</Feedback>
+      <Navigate Target="MainPage"/>
+    </Command>
+
+    <Command Name="MediaRemoteMeForward">
+      <Example>Remote Forward</Example>
+      <ListenFor>forward</ListenFor>
+      <Feedback>Sending Next media key</Feedback>
+      <Navigate Target="MainPage"/>
+    </Command>
+
+    <Command Name="MediaRemoteMeRight">
+      <Example>Remote Right</Example>
+      <ListenFor>right</ListenFor>
+      <Feedback>Sending Next media key</Feedback>
+      <Navigate Target="MainPage"/>
+    </Command>
+
+    <Command Name="MediaRemoteMeVolUp">
+      <Example>Remote Volume Up</Example>
+      <ListenFor>volume up</ListenFor>
+      <Feedback>Sending Volume Up media key</Feedback>
+      <Navigate Target="MainPage"/>
+    </Command>
+
+    <Command Name="MediaRemoteMeVolUpShort">
+      <Example>Remote Up</Example>
+      <ListenFor>up</ListenFor>
+      <Feedback>Sending Volume Up media key</Feedback>
+      <Navigate Target="MainPage"/>
+    </Command>
+
+    <Command Name="MediaRemoteMeVolDown">
+      <Example>Remote Volume Down</Example>
+      <ListenFor>volume down</ListenFor>
+      <Feedback>Sending Volume Down media key</Feedback>
+      <Navigate Target="MainPage"/>
+    </Command>
+
+    <Command Name="MediaRemoteMeVolDownShort">
+      <Example>Remote Down</Example>
+      <ListenFor>down</ListenFor>
+      <Feedback>Sending Volume Down media key</Feedback>
+      <Navigate Target="MainPage"/>
+    </Command>
+
+    <Command Name="MediaRemoteMeVolMute">
+      <Example>Remote Volume Mute</Example>
+      <ListenFor>volume mute</ListenFor>
+      <Feedback>Sending Volume Mute media key</Feedback>
+      <Navigate Target="MainPage"/>
+    </Command>
+
+    <Command Name="MediaRemoteMeVolMuteShort">
+      <Example>Remote Mute</Example>
+      <ListenFor>mute</ListenFor>
+      <Feedback>Sending Volume Mute media key</Feedback>
+      <Navigate Target="MainPage"/>
+    </Command>
+
+    <Command Name="MediaRemoteMeVolUnmute">
+      <Example>Remote Volume Unmute</Example>
+      <ListenFor>volume unmute</ListenFor>
+      <Feedback>Sending Volume Unmute media key</Feedback>
+      <Navigate Target="MainPage"/>
+    </Command>
+
+    <Command Name="MediaRemoteMeVolUnmuteShort">
+      <Example>Remote Unmute</Example>
+      <ListenFor>unmute</ListenFor>
+      <Feedback>Sending Volume Unmute media key</Feedback>
+      <Navigate Target="MainPage"/>
+    </Command>
+
+    <Command Name="MediaRemoteMeArrowLeft">
+      <Example>Remote Arrow Left</Example>
+      <ListenFor>arrow left</ListenFor>
+      <Feedback>Sending arrow left key</Feedback>
+      <Navigate Target="MainPage"/>
+    </Command>
+
+    <Command Name="MediaRemoteMeArrowRight">
+      <Example>Remote Arrow Right</Example>
+      <ListenFor>arrow right</ListenFor>
+      <Feedback>Sending arrow right key</Feedback>
+      <Navigate Target="MainPage"/>
+    </Command>
+
+    <Command Name="MediaRemoteMeFullscreen">
+      <Example>Remote Fullscreen</Example>
+      <ListenFor>fullscreen</ListenFor>
+      <Feedback>Sending Fullscreen media key</Feedback>
+      <Navigate Target="MainPage"/>
+    </Command>
+
+    <Command Name="MediaRemoteMeWindow">
+      <Example>Remote Window</Example>
+      <ListenFor>window</ListenFor>
+      <Feedback>Sending Window media key</Feedback>
+      <Navigate Target="MainPage"/>
+    </Command>
+  </CommandSet>
+</VoiceCommands>
