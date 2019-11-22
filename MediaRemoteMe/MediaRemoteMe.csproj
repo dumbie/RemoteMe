@@ -109,8 +109,8 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\..\ArnoldVinkCode\Functions\UWP\AVFunctions.cs">
-      <Link>Resources\ArnoldVinkCode\Functions\AVFunctions.cs</Link>
+    <Compile Include="..\..\ArnoldVinkCode\UWP\Functions\AVFunctions.cs">
+      <Link>ArnoldVinkCode\Functions\AVFunctions.cs</Link>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
