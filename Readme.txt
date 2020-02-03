@@ -1,6 +1,4 @@
-RemoteMe is a media remote control application,
-That will send media commands from your device to your PC like
-play/pause, next, previous and volume up, down and mute.
+RemoteMe is a remote control application, that will send media commands from your device to your PC like play/pause, next, previous and volume up, down and mute.
 
 | Installation Instructions
 1) Install the RemoteMe application on your Windows device.

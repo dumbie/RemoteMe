@@ -96,16 +96,22 @@
                         </StackPanel>
 
                         <!-- Bottom Row -->
-                        <StackPanel Orientation="Horizontal">
-                            <Grid Background="{StaticResource SystemControlBackgroundAccentBrush}" HorizontalAlignment="Left" Tag="Fullscreen" Tapped="MediaBox_Tap">
-                                <Image Source="Assets/Tiles/Fullscreen.png" Height="95" Width="95"/>
-                            </Grid>
-                            <Grid Background="{StaticResource SystemControlBackgroundAccentBrush}" HorizontalAlignment="Left" Tag="VolDown" Tapped="MediaBox_Tap" Margin="5,0,0,0">
-                                <Image Source="Assets/Tiles/VolDown.png" Height="95" Width="95"/>
-                            </Grid>
-                            <Grid Background="{StaticResource SystemControlBackgroundAccentBrush}" HorizontalAlignment="Left" Tag="VolMute" Tapped="MediaBox_Tap" Margin="5,0,0,0">
-                                <Image Source="Assets/Tiles/VolMute.png" Height="95" Width="95"/>
-                            </Grid>
+                        <StackPanel HorizontalAlignment="Left">
+                            <StackPanel Orientation="Horizontal">
+                                <!-- Buttons -->
+                                <Grid Background="{StaticResource SystemControlBackgroundAccentBrush}" HorizontalAlignment="Left" Tag="Fullscreen" Tapped="MediaBox_Tap">
+                                    <Image Source="Assets/Tiles/Fullscreen.png" Height="95" Width="95"/>
+                                </Grid>
+                                <Grid Background="{StaticResource SystemControlBackgroundAccentBrush}" HorizontalAlignment="Left" Tag="VolDown" Tapped="MediaBox_Tap" Margin="5,0,0,0">
+                                    <Image Source="Assets/Tiles/VolDown.png" Height="95" Width="95"/>
+                                </Grid>
+                                <Grid Background="{StaticResource SystemControlBackgroundAccentBrush}" HorizontalAlignment="Left" Tag="VolMute" Tapped="MediaBox_Tap" Margin="5,0,0,0">
+                                    <Image Source="Assets/Tiles/VolMute.png" Height="95" Width="95"/>
+                                </Grid>
+                            </StackPanel>
+
+                            <!-- Volume Text -->
+                            <TextBlock Name="txt_CurrentVolume" Visibility="Collapsed" Margin="0,10,0,0" Text="Volume 0%" HorizontalAlignment="Center" Style="{StaticResource TextBlockBlack}" TextWrapping="Wrap"/>
                         </StackPanel>
 
                         <!-- Warning Text -->
@@ -257,7 +263,10 @@
             <Grid Name="tab_Monitor" Visibility="Collapsed">
                 <ScrollViewer Style="{StaticResource ScrollViewerVertical}">
                     <StackPanel Margin="10,10,10,10">
-                        <Button Name="btn_PrimaryMonitor" Style="{StaticResource ButtonAccent}" Content="Change to primary monitor" Margin="0,20,0,0" Click="btn_UnpinAllTiles_Click"/>
+                        <Button Name="btn_PrimaryMonitor" Width="250" Style="{StaticResource ButtonAccent}" Content="Switch to primary monitor" Click="Btn_PrimaryMonitor_Click"/>
+                        <Button Name="btn_SecondaryMonitor" Width="250" Style="{StaticResource ButtonAccent}" Content="Switch to secondary monitor" Margin="0,20,0,0" Click="Btn_SecondaryMonitor_Click"/>
+                        <Button Name="btn_DuplicateMonitor" Width="250" Style="{StaticResource ButtonAccent}" Content="Duplicate monitors" Margin="0,20,0,0" Click="Btn_DuplicateMonitor_Click"/>
+                        <Button Name="btn_ExtendMonitor" Width="250" Style="{StaticResource ButtonAccent}" Content="Extend monitors" Margin="0,20,0,0" Click="Btn_ExtendMonitor_Click"/>
                     </StackPanel>
                 </ScrollViewer>
             </Grid>
@@ -345,7 +354,14 @@
                                 <Button Name="btn_PinFullscreen" Style="{StaticResource ButtonAccent}" Content="Pin Fullscreen" Margin="5,0,0,0" Click="btn_PinFullscreen_Click" />
                             </StackPanel>
 
-                            <Button Name="btn_UnpinAllTiles" Style="{StaticResource ButtonAccent}" Content="Unpin all media tiles" Margin="0,20,0,0" Click="btn_UnpinAllTiles_Click"/>
+                            <StackPanel Margin="0,20,0,0" Orientation="Horizontal">
+                                <Grid Background="{StaticResource SystemControlBackgroundAccentBrush}" HorizontalAlignment="Left">
+                                    <Image Source="Assets/Tiles/AmbiPro.png" Height="25"/>
+                                </Grid>
+                                <Button Name="btn_PinAmbiProOnOff" Style="{StaticResource ButtonAccent}" Content="Pin AmbiPro On/Off" Margin="5,0,0,0" Click="btn_PinAmbiProOnOff_Click" />
+                            </StackPanel>
+
+                            <Button Name="btn_UnpinAllTiles" Style="{StaticResource ButtonAccent}" Content="Unpin all remote tiles" Margin="0,20,0,0" Click="btn_UnpinAllTiles_Click"/>
                         </StackPanel>
                     </StackPanel>
                 </ScrollViewer>
@@ -413,6 +429,13 @@
                                 </Grid>
                                 <Button Name="btn_NfcFullscreen" Style="{StaticResource ButtonAccent}" Content="Write Fullscreen" Margin="5,0,0,0" Tag="NfcFullscreen" Click="btn_WriteNFCTag_Click" />
                             </StackPanel>
+
+                            <StackPanel Margin="0,20,0,0" Orientation="Horizontal">
+                                <Grid Background="{StaticResource SystemControlBackgroundAccentBrush}" HorizontalAlignment="Left">
+                                    <Image Source="Assets/Tiles/AmbiPro.png" Height="25"/>
+                                </Grid>
+                                <Button Name="btn_NfcAmbiPro" Style="{StaticResource ButtonAccent}" Content="Write AmbiPro On/Off" Margin="5,0,0,0" Tag="NfcAmbiPro" Click="btn_WriteNFCTag_Click" />
+                            </StackPanel>
                         </StackPanel>
                     </StackPanel>
                 </ScrollViewer>
@@ -427,7 +450,7 @@
                         <TextBlock Text="Enabling this will keep your device from turning off the screen so you can always quickly access the remote." TextWrapping="Wrap" Style="{StaticResource TextBlockLightGray}"/>
 
                         <TextBlock Text="Remote buttons location" Margin="0,15,0,0" Style="{StaticResource TextBlockBlack}"/>
-                        <TextBlock Text="The following selection will be used as location for the media remote buttons on your device's screen." TextWrapping="Wrap" Style="{StaticResource TextBlockLightGray}"/>
+                        <TextBlock Text="The following selection will be used as location for the remote buttons on your device's screen." TextWrapping="Wrap" Style="{StaticResource TextBlockLightGray}"/>
                         <ComboBox Name="lp_SettingRemoteLocation" Width="250" HorizontalAlignment="Left" Style="{StaticResource ComboBox}">
                             <ComboBoxItem Content="Top"/>
                             <ComboBoxItem Content="Center"/>

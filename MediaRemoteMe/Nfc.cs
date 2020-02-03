@@ -29,7 +29,8 @@ namespace MediaRemoteMe
                     {
                         Button Button = (Button)sender;
                         string LaunchArgs = Button.Tag.ToString();
-                        sp_Nfc.Opacity = 0.60; sp_Nfc.IsHitTestVisible = false;
+                        sp_Nfc.Opacity = 0.60;
+                        sp_Nfc.IsHitTestVisible = false;
 
                         //Create 10 seconds timeout timer
                         int TimeoutTime = 0;

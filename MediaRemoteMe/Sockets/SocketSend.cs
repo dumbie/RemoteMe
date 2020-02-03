@@ -31,7 +31,7 @@ namespace MediaRemoteMe
                     vSendingSocketMsg = true;
 
                     //Update the status user interface
-                    txt_AppStatusDesc.Text = "Sending media remote command...";
+                    txt_AppStatusDesc.Text = "Sending remote command...";
                     app_StatusBar.Visibility = Visibility.Visible;
 
                     using (StreamSocket StreamSocket = new StreamSocket())
@@ -86,7 +86,7 @@ namespace MediaRemoteMe
                     vSendingSocketMsg = true;
 
                     //Update the status user interface
-                    txt_AppStatusDesc.Text = "Sending media remote command...";
+                    txt_AppStatusDesc.Text = "Sending remote command...";
                     app_StatusBar.Visibility = Visibility.Visible;
 
                     using (StreamSocket StreamSocket = new StreamSocket())
@@ -120,7 +120,7 @@ namespace MediaRemoteMe
                     txt_ErrorConnect2.Visibility = Visibility.Visible;
                 }
 
-                await new MessageDialog("Failed to connect to the Arnold Vink Tools application on your PC please check this app settings, your network connection and make sure that Arnold Vink Tools is running on the target PC.", App.vApplicationName).ShowAsync();
+                await new MessageDialog("Failed to connect to the AmbiPro application on your PC please check this app settings, your network connection and make sure that AmbiPro is running on the target PC.", App.vApplicationName).ShowAsync();
             }
         }
 

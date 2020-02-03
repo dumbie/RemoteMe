@@ -1,7 +1,6 @@
 ﻿using ArnoldVinkCode;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Net.NetworkInformation;
 using System.Threading.Tasks;
 using Windows.Foundation;
@@ -157,6 +156,7 @@ namespace MediaRemoteMe
                 else if (App.vLaunchTileActivatedCommand == "MediaRemoteMeArrowLeft") { await SocketSendArnold("MeArrowLeft"); }
                 else if (App.vLaunchTileActivatedCommand == "MediaRemoteMeArrowRight") { await SocketSendArnold("MeArrowRight"); }
                 else if (App.vLaunchTileActivatedCommand == "MediaRemoteMeFullscreen") { await SocketSendArnold("MeFullscreen"); }
+                else if (App.vLaunchTileActivatedCommand == "MediaRemoteMeAmbiProOnOff") { await SocketSendAmbiPro("LedSwitch"); }
                 //Voice Startup
                 else if (App.vLaunchVoiceActivatedCommand == "MediaRemoteMePlay") { await SocketSendArnold("MePlayPause"); }
                 else if (App.vLaunchVoiceActivatedCommand == "MediaRemoteMeResume") { await SocketSendArnold("MePlayPause"); }
@@ -180,6 +180,7 @@ namespace MediaRemoteMe
                 else if (App.vLaunchVoiceActivatedCommand == "MediaRemoteMeArrowRight") { await SocketSendArnold("MeArrowRight"); }
                 else if (App.vLaunchVoiceActivatedCommand == "MediaRemoteMeFullscreen") { await SocketSendArnold("MeFullscreen"); }
                 else if (App.vLaunchVoiceActivatedCommand == "MediaRemoteMeWindow") { await SocketSendArnold("MeFullscreen"); }
+                else if (App.vLaunchVoiceActivatedCommand == "MediaRemoteMeAmbiProOnOff") { await SocketSendAmbiPro("LedSwitch"); }
                 //NFC Startup
                 else if (App.vApplicationLaunchArgs == "NfcPlayPause") { await SocketSendArnold("MePlayPause"); }
                 else if (App.vApplicationLaunchArgs == "NfcPrevious") { await SocketSendArnold("MePrevSong"); }
@@ -190,6 +191,7 @@ namespace MediaRemoteMe
                 else if (App.vApplicationLaunchArgs == "NfcArrowLeft") { await SocketSendArnold("MeArrowLeft"); }
                 else if (App.vApplicationLaunchArgs == "NfcArrowRight") { await SocketSendArnold("MeArrowRight"); }
                 else if (App.vApplicationLaunchArgs == "NfcFullscreen") { await SocketSendArnold("MeFullscreen"); }
+                else if (App.vApplicationLaunchArgs == "NfcAmbiPro") { await SocketSendAmbiPro("LedSwitch"); }
 
                 //Check if the application needs to be closed
                 if ((!String.IsNullOrEmpty(App.vLaunchTileActivatedCommand) || !String.IsNullOrEmpty(App.vLaunchVoiceActivatedCommand) || !String.IsNullOrEmpty(App.vApplicationLaunchArgs)) && App.vLaunchTileActivatedCommand != "App" && (bool)vApplicationSettings["CmdCloseApp"]) { Application.Current.Exit(); }
@@ -200,23 +202,6 @@ namespace MediaRemoteMe
                 App.vLaunchVoiceActivatedSpoken = "";
                 App.vApplicationLaunchArgs = "";
                 return;
-            }
-            catch { }
-        }
-
-        //Application Media Buttons
-        async void MediaBox_Tap(object sender, TappedRoutedEventArgs e)
-        {
-            try
-            {
-                FrameworkElement FrameworkElement = (FrameworkElement)sender;
-                string TapTag = FrameworkElement.Tag.ToString();
-
-                //Add volume information to the tag
-                if (TapTag == "VolUp" || TapTag == "VolDown") { TapTag += vApplicationSettings["VolSkip"].ToString(); }
-
-                Debug.WriteLine("Clicked on button: " + TapTag);
-                await SocketSendArnold("Me" + TapTag);
             }
             catch { }
         }

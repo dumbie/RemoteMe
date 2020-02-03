@@ -25697,12 +25697,12 @@
   },
   "project": {
     "restore": {
-      "projectUniqueName": "E:\\Development\\Github\\MediaRemoteMe\\MediaRemoteMe\\MediaRemoteMe.csproj",
+      "projectUniqueName": "E:\\Development\\Github\\RemoteMe\\MediaRemoteMe\\MediaRemoteMe.csproj",
       "projectName": "MediaRemoteMe",
-      "projectPath": "E:\\Development\\Github\\MediaRemoteMe\\MediaRemoteMe\\MediaRemoteMe.csproj",
-      "projectJsonPath": "E:\\Development\\Github\\MediaRemoteMe\\MediaRemoteMe\\project.json",
+      "projectPath": "E:\\Development\\Github\\RemoteMe\\MediaRemoteMe\\MediaRemoteMe.csproj",
+      "projectJsonPath": "E:\\Development\\Github\\RemoteMe\\MediaRemoteMe\\project.json",
       "packagesPath": "C:\\Users\\vink_\\.nuget\\packages\\",
-      "outputPath": "E:\\Development\\Github\\MediaRemoteMe\\MediaRemoteMe\\obj\\",
+      "outputPath": "E:\\Development\\Github\\RemoteMe\\MediaRemoteMe\\obj\\",
       "projectStyle": "ProjectJson",
       "configFilePaths": [
         "C:\\Users\\vink_\\AppData\\Roaming\\NuGet\\NuGet.Config",

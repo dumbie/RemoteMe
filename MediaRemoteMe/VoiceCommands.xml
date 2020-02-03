@@ -157,5 +157,12 @@
       <Feedback>Sending Window media key</Feedback>
       <Navigate Target="MainPage"/>
     </Command>
+
+    <Command Name="MediaRemoteMeAmbiProOnOff">
+      <Example>Remote AmbiPro Switch</Example>
+      <ListenFor>ambipro switch</ListenFor>
+      <Feedback>Sending AmbiPro Switch command</Feedback>
+      <Navigate Target="MainPage"/>
+    </Command>
   </CommandSet>
 </VoiceCommands>

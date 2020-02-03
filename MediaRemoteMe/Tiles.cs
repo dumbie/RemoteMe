@@ -22,6 +22,7 @@ namespace MediaRemoteMe
                 if (SecondaryTile.Exists("MediaRemoteMeArrowLeft")) { btn_PinArrowLeft.Content = "Unpin Arrow Left"; }
                 if (SecondaryTile.Exists("MediaRemoteMeArrowRight")) { btn_PinArrowRight.Content = "Unpin Arrow Right"; }
                 if (SecondaryTile.Exists("MediaRemoteMeFullscreen")) { btn_PinFullscreen.Content = "Unpin Fullscreen"; }
+                if (SecondaryTile.Exists("MediaRemoteMeAmbiProOnOff")) { btn_PinAmbiProOnOff.Content = "Unpin AmbiPro On/Off"; }
             }
             catch { }
         }
@@ -44,7 +45,7 @@ namespace MediaRemoteMe
                 btn_PinArrowRight.Content = "Pin Arrow Right";
                 btn_PinFullscreen.Content = "Pin Fullscreen";
 
-                await new MessageDialog("All the media remote tiles have been unpinned from your start screen.", App.vApplicationName).ShowAsync();
+                await new MessageDialog("All the remote tiles have been unpinned from your start screen.", App.vApplicationName).ShowAsync();
             }
             catch { }
         }
@@ -233,6 +234,27 @@ namespace MediaRemoteMe
                     SecondaryTile Pin_SecondaryTile = new SecondaryTile(SecondaryTileId, "Fullscreen", SecondaryTileId, new Uri("ms-appx:///Assets/Tiles/Fullscreen.png"), TileSize.Square150x150);
                     bool Pinned = await Pin_SecondaryTile.RequestCreateForSelectionAsync(GetElementRect((FrameworkElement)sender), Placement.Below);
                     if (Pinned) { btn_PinFullscreen.Content = "Unpin Fullscreen"; }
+                }
+            }
+            catch { await new MessageDialog("Failed to pin or unpin the tile, please try again.", App.vApplicationName).ShowAsync(); }
+        }
+
+        //Pin or unpin AmbiPro On/Off
+        async void btn_PinAmbiProOnOff_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string SecondaryTileId = "MediaRemoteMeAmbiProOnOff";
+                if (SecondaryTile.Exists(SecondaryTileId))
+                {
+                    bool UnPinned = await new SecondaryTile(SecondaryTileId).RequestDeleteForSelectionAsync(GetElementRect((FrameworkElement)sender), Placement.Below);
+                    if (UnPinned) { btn_PinAmbiProOnOff.Content = "Pin AmbiPro On/Off"; }
+                }
+                else
+                {
+                    SecondaryTile Pin_SecondaryTile = new SecondaryTile(SecondaryTileId, "AmbiPro On/Off", SecondaryTileId, new Uri("ms-appx:///Assets/Tiles/AmbiPro.png"), TileSize.Square150x150);
+                    bool Pinned = await Pin_SecondaryTile.RequestCreateForSelectionAsync(GetElementRect((FrameworkElement)sender), Placement.Below);
+                    if (Pinned) { btn_PinAmbiProOnOff.Content = "Unpin AmbiPro On/Off"; }
                 }
             }
             catch { await new MessageDialog("Failed to pin or unpin the tile, please try again.", App.vApplicationName).ShowAsync(); }

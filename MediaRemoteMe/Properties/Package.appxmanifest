@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="54655ArnoldVink.MediaRemoteMex" Publisher="CN=E50820D8-A817-4517-9CD7-9B57976E3736" Version="2.0.0.0" />
+  <Identity Name="54655ArnoldVink.MediaRemoteMex" Publisher="CN=E50820D8-A817-4517-9CD7-9B57976E3736" Version="3.0.0.0" />
   <mp:PhoneIdentity PhoneProductId="fd1857dc-2637-4dc0-a56c-bf54cab6a19d" PhonePublisherId="26192054-f328-4711-980a-1eae1d2b2ad3" />
   <Properties>
     <DisplayName>RemoteMe</DisplayName>
