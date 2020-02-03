@@ -8,9 +8,9 @@ namespace MediaRemoteMe
 {
     partial class MainPage
     {
+        //Check if live tiles are pinned
         void TilesLoad()
         {
-            //Check if live tiles are pinned
             try
             {
                 if (SecondaryTile.Exists("MediaRemoteMePlayPause")) { btn_PinPlayPause.Content = "Unpin Play or Pause"; }
@@ -44,7 +44,7 @@ namespace MediaRemoteMe
                 btn_PinArrowRight.Content = "Pin Arrow Right";
                 btn_PinFullscreen.Content = "Pin Fullscreen";
 
-                await new MessageDialog("All the media remote tiles have been unpinned from your start screen.", "MediaRemoteMe").ShowAsync();
+                await new MessageDialog("All the media remote tiles have been unpinned from your start screen.", App.vApplicationName).ShowAsync();
             }
             catch { }
         }
@@ -67,7 +67,7 @@ namespace MediaRemoteMe
                     if (Pinned) { btn_PinPlayPause.Content = "Unpin Play or Pause"; }
                 }
             }
-            catch { await new MessageDialog("Failed to pin or unpin the tile, please try again.", "MediaRemoteMe").ShowAsync(); }
+            catch { await new MessageDialog("Failed to pin or unpin the tile, please try again.", App.vApplicationName).ShowAsync(); }
         }
 
         //Pin or unpin Previous Item
@@ -88,7 +88,7 @@ namespace MediaRemoteMe
                     if (Pinned) { btn_PinPrevious.Content = "Unpin Previous Item"; }
                 }
             }
-            catch { await new MessageDialog("Failed to pin or unpin the tile, please try again.", "MediaRemoteMe").ShowAsync(); }
+            catch { await new MessageDialog("Failed to pin or unpin the tile, please try again.", App.vApplicationName).ShowAsync(); }
         }
 
         //Pin or unpin Next Item
@@ -109,7 +109,7 @@ namespace MediaRemoteMe
                     if (Pinned) { btn_PinNext.Content = "Unpin Next Item"; }
                 }
             }
-            catch { await new MessageDialog("Failed to pin or unpin the tile, please try again.", "MediaRemoteMe").ShowAsync(); }
+            catch { await new MessageDialog("Failed to pin or unpin the tile, please try again.", App.vApplicationName).ShowAsync(); }
         }
 
         //Pin or unpin Volume Up
@@ -130,7 +130,7 @@ namespace MediaRemoteMe
                     if (Pinned) { btn_PinVolUp.Content = "Unpin Volume Up"; }
                 }
             }
-            catch { await new MessageDialog("Failed to pin or unpin the tile, please try again.", "MediaRemoteMe").ShowAsync(); }
+            catch { await new MessageDialog("Failed to pin or unpin the tile, please try again.", App.vApplicationName).ShowAsync(); }
         }
 
         //Pin or unpin Volume Down
@@ -151,7 +151,7 @@ namespace MediaRemoteMe
                     if (Pinned) { btn_PinVolDown.Content = "Unpin Volume Down"; }
                 }
             }
-            catch { await new MessageDialog("Failed to pin or unpin the tile, please try again.", "MediaRemoteMe").ShowAsync(); }
+            catch { await new MessageDialog("Failed to pin or unpin the tile, please try again.", App.vApplicationName).ShowAsync(); }
         }
 
         //Pin or unpin Volume Mute
@@ -172,7 +172,7 @@ namespace MediaRemoteMe
                     if (Pinned) { btn_PinVolMute.Content = "Unpin Volume Mute"; }
                 }
             }
-            catch { await new MessageDialog("Failed to pin or unpin the tile, please try again.", "MediaRemoteMe").ShowAsync(); }
+            catch { await new MessageDialog("Failed to pin or unpin the tile, please try again.", App.vApplicationName).ShowAsync(); }
         }
 
         //Pin or unpin Arrow Left
@@ -193,7 +193,7 @@ namespace MediaRemoteMe
                     if (Pinned) { btn_PinArrowLeft.Content = "Unpin Arrow Left"; }
                 }
             }
-            catch { await new MessageDialog("Failed to pin or unpin the tile, please try again.", "MediaRemoteMe").ShowAsync(); }
+            catch { await new MessageDialog("Failed to pin or unpin the tile, please try again.", App.vApplicationName).ShowAsync(); }
         }
 
         //Pin or unpin Arrow Right
@@ -214,7 +214,7 @@ namespace MediaRemoteMe
                     if (Pinned) { btn_PinArrowRight.Content = "Unpin Arrow Right"; }
                 }
             }
-            catch { await new MessageDialog("Failed to pin or unpin the tile, please try again.", "MediaRemoteMe").ShowAsync(); }
+            catch { await new MessageDialog("Failed to pin or unpin the tile, please try again.", App.vApplicationName).ShowAsync(); }
         }
 
         //Pin or unpin Fullscreen
@@ -235,11 +235,13 @@ namespace MediaRemoteMe
                     if (Pinned) { btn_PinFullscreen.Content = "Unpin Fullscreen"; }
                 }
             }
-            catch { await new MessageDialog("Failed to pin or unpin the tile, please try again.", "MediaRemoteMe").ShowAsync(); }
+            catch { await new MessageDialog("Failed to pin or unpin the tile, please try again.", App.vApplicationName).ShowAsync(); }
         }
 
         //Render Secondary Live Tile
         Rect GetElementRect(FrameworkElement FrameworkElement)
-        { return new Rect(FrameworkElement.TransformToVisual(null).TransformPoint(new Point()), new Size(FrameworkElement.ActualWidth, FrameworkElement.ActualHeight)); }
+        {
+            return new Rect(FrameworkElement.TransformToVisual(null).TransformPoint(new Point()), new Size(FrameworkElement.ActualWidth, FrameworkElement.ActualHeight));
+        }
     }
 }

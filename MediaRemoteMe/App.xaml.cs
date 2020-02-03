@@ -11,6 +11,9 @@ namespace MediaRemoteMe
 {
     sealed partial class App : Application
     {
+        //Application variables
+        public static string vApplicationName = "RemoteMe";
+
         //Application launch variables
         public static string vLaunchTileActivatedCommand = "";
         public static string vLaunchVoiceActivatedCommand = "";
@@ -30,7 +33,7 @@ namespace MediaRemoteMe
                     {
                         e.Handled = true;
                         Nullable<bool> MessageDialogResult = null;
-                        MessageDialog MessageDialog = new MessageDialog("Sadly enough something went wrong in the application, if the application no longer works like it should you can try to restart the application, do you want to try to continue or close the application?\n\nThe application received the following error message: " + e.Message, "MediaRemoteMe");
+                        MessageDialog MessageDialog = new MessageDialog("Sadly enough something went wrong in the application, if the application no longer works like it should you can try to restart the application, do you want to try to continue or close the application?\n\nThe application received the following error message: " + e.Message, vApplicationName);
                         MessageDialog.Commands.Add(new UICommand("Continue", new UICommandInvokedHandler((cmd) => MessageDialogResult = true)));
                         MessageDialog.Commands.Add(new UICommand("Close App", new UICommandInvokedHandler((cmd) => MessageDialogResult = false)));
                         await MessageDialog.ShowAsync();

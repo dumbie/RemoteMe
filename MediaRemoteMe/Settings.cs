@@ -41,8 +41,11 @@ namespace MediaRemoteMe
                 //Check - Server ip adres
                 if (!vApplicationSettings.ContainsKey("ServerIp")) { vApplicationSettings["ServerIp"] = "192.168.0."; }
 
-                //Check - Server port
+                //Check - Server port Arnold
                 if (!vApplicationSettings.ContainsKey("ServerPort")) { vApplicationSettings["ServerPort"] = "1000"; }
+
+                //Check - Server port AmbiPro
+                if (!vApplicationSettings.ContainsKey("ServerPortAmbiPro")) { vApplicationSettings["ServerPortAmbiPro"] = "1020"; }
 
                 //Load and check - Voice Commands for Cortana - Not awaiting to avoid slow startup
                 try
@@ -55,7 +58,10 @@ namespace MediaRemoteMe
                     Debug.WriteLine("Failed to register the Cortana voice commands.");
                 }
             }
-            catch (Exception Ex) { await new MessageDialog("SettingsCheckError: " + Ex.Message, "MediaRemoteMe").ShowAsync(); }
+            catch (Exception Ex)
+            {
+                await new MessageDialog("SettingsCheckError: " + Ex.Message, App.vApplicationName).ShowAsync();
+            }
         }
 
         //Load - Application Settings
@@ -87,17 +93,26 @@ namespace MediaRemoteMe
 
                 //Load - Server ip adres
                 txtbox_ServerIp.Text = vApplicationSettings["ServerIp"].ToString();
-                if (String.IsNullOrWhiteSpace(txtbox_ServerIp.Text)) { txtbox_ServerIp.BorderBrush = new SolidColorBrush(Colors.Red); }
+                if (string.IsNullOrWhiteSpace(txtbox_ServerIp.Text)) { txtbox_ServerIp.BorderBrush = new SolidColorBrush(Colors.Red); }
                 if (!txtbox_ServerIp.Text.Contains(".") || txtbox_ServerIp.Text.Contains("-") || txtbox_ServerIp.Text.Contains(",") || txtbox_ServerIp.Text.Contains("..") || txtbox_ServerIp.Text.Contains("...") || txtbox_ServerIp.Text.EndsWith(".")) { txtbox_ServerIp.BorderBrush = new SolidColorBrush(Colors.Red); }
                 if (!(txtbox_ServerIp.Text.Split('.').Length == 4)) { txtbox_ServerIp.BorderBrush = new SolidColorBrush(Colors.Red); }
 
-                //Load - Server port
-                txtbox_ServerPort.Text = vApplicationSettings["ServerPort"].ToString();
-                if (String.IsNullOrWhiteSpace(txtbox_ServerPort.Text)) { txtbox_ServerPort.BorderBrush = new SolidColorBrush(Colors.Red); }
-                if (Regex.IsMatch(txtbox_ServerPort.Text, "(\\D+)")) { txtbox_ServerPort.BorderBrush = new SolidColorBrush(Colors.Red); }
-                if (Convert.ToInt32(txtbox_ServerPort.Text) < 1 || Convert.ToInt32(txtbox_ServerPort.Text) > 65535) { txtbox_ServerPort.BorderBrush = new SolidColorBrush(Colors.Red); }
+                //Load - Server port Arnold
+                txtbox_ServerPortArnoldVink.Text = vApplicationSettings["ServerPort"].ToString();
+                if (string.IsNullOrWhiteSpace(txtbox_ServerPortArnoldVink.Text)) { txtbox_ServerPortArnoldVink.BorderBrush = new SolidColorBrush(Colors.Red); }
+                if (Regex.IsMatch(txtbox_ServerPortArnoldVink.Text, "(\\D+)")) { txtbox_ServerPortArnoldVink.BorderBrush = new SolidColorBrush(Colors.Red); }
+                if (Convert.ToInt32(txtbox_ServerPortArnoldVink.Text) < 1 || Convert.ToInt32(txtbox_ServerPortArnoldVink.Text) > 65535) { txtbox_ServerPortArnoldVink.BorderBrush = new SolidColorBrush(Colors.Red); }
+
+                //Load - Server port AmbiPro
+                txtbox_ServerPortAmbiPro.Text = vApplicationSettings["ServerPortAmbiPro"].ToString();
+                if (string.IsNullOrWhiteSpace(txtbox_ServerPortAmbiPro.Text)) { txtbox_ServerPortAmbiPro.BorderBrush = new SolidColorBrush(Colors.Red); }
+                if (Regex.IsMatch(txtbox_ServerPortAmbiPro.Text, "(\\D+)")) { txtbox_ServerPortAmbiPro.BorderBrush = new SolidColorBrush(Colors.Red); }
+                if (Convert.ToInt32(txtbox_ServerPortAmbiPro.Text) < 1 || Convert.ToInt32(txtbox_ServerPortAmbiPro.Text) > 65535) { txtbox_ServerPortAmbiPro.BorderBrush = new SolidColorBrush(Colors.Red); }
             }
-            catch (Exception Ex) { await new MessageDialog("SettingsLoadError: " + Ex.Message, "MediaRemoteMe").ShowAsync(); }
+            catch (Exception Ex)
+            {
+                await new MessageDialog("SettingsLoadError: " + Ex.Message, App.vApplicationName).ShowAsync();
+            }
         }
 
         //Save Events - Application Settings
@@ -155,7 +170,7 @@ namespace MediaRemoteMe
                 txtbox_ServerIp.TextChanged += (sender, e) =>
                 {
                     TextBox TextBox = (TextBox)sender;
-                    if (String.IsNullOrWhiteSpace(TextBox.Text)) { TextBox.BorderBrush = new SolidColorBrush(Colors.Red); return; }
+                    if (string.IsNullOrWhiteSpace(TextBox.Text)) { TextBox.BorderBrush = new SolidColorBrush(Colors.Red); return; }
                     if (TextBox.Text.Contains("-")) { TextBox.Text = TextBox.Text.Replace("-", "."); TextBox.SelectionStart = TextBox.Text.Length; }
                     if (TextBox.Text.Contains(",")) { TextBox.Text = TextBox.Text.Replace(",", "."); TextBox.SelectionStart = TextBox.Text.Length; }
                     if (TextBox.Text.Count(x => x == '.') < 3 || TextBox.Text.Count(x => x == '.') > 3) { TextBox.BorderBrush = new SolidColorBrush(Colors.Red); return; }
@@ -165,22 +180,40 @@ namespace MediaRemoteMe
                     vApplicationSettings["ServerIp"] = TextBox.Text;
                 };
 
-                //Save - Server port
-                txtbox_ServerPort.TextChanged += (sender, e) =>
+                //Save - Server port Arnold
+                txtbox_ServerPortArnoldVink.TextChanged += (sender, e) =>
                 {
                     TextBox TextBox = (TextBox)sender;
-                    if (String.IsNullOrWhiteSpace(TextBox.Text)) { TextBox.BorderBrush = new SolidColorBrush(Colors.Red); return; }
+                    if (string.IsNullOrWhiteSpace(TextBox.Text)) { TextBox.BorderBrush = new SolidColorBrush(Colors.Red); return; }
                     if (TextBox.Text.Contains("-")) { TextBox.Text = TextBox.Text.Replace("-", ""); TextBox.SelectionStart = TextBox.Text.Length; }
                     if (TextBox.Text.Contains(",")) { TextBox.Text = TextBox.Text.Replace(",", ""); TextBox.SelectionStart = TextBox.Text.Length; }
                     if (TextBox.Text.Contains(".")) { TextBox.Text = TextBox.Text.Replace(".", ""); TextBox.SelectionStart = TextBox.Text.Length; }
                     if (Regex.IsMatch(TextBox.Text, "(\\D+)")) { TextBox.BorderBrush = new SolidColorBrush(Colors.Red); return; }
-                    if (Convert.ToInt32(TextBox.Text) < 1 || Convert.ToInt32(txtbox_ServerPort.Text) > 65535) { TextBox.BorderBrush = new SolidColorBrush(Colors.Red); return; }
+                    if (Convert.ToInt32(TextBox.Text) < 1 || Convert.ToInt32(TextBox.Text) > 65535) { TextBox.BorderBrush = new SolidColorBrush(Colors.Red); return; }
 
                     TextBox.BorderBrush = new SolidColorBrush(Colors.Green);
                     vApplicationSettings["ServerPort"] = TextBox.Text;
                 };
+
+                //Save - Server port AmbiPro
+                txtbox_ServerPortAmbiPro.TextChanged += (sender, e) =>
+                {
+                    TextBox TextBox = (TextBox)sender;
+                    if (string.IsNullOrWhiteSpace(TextBox.Text)) { TextBox.BorderBrush = new SolidColorBrush(Colors.Red); return; }
+                    if (TextBox.Text.Contains("-")) { TextBox.Text = TextBox.Text.Replace("-", ""); TextBox.SelectionStart = TextBox.Text.Length; }
+                    if (TextBox.Text.Contains(",")) { TextBox.Text = TextBox.Text.Replace(",", ""); TextBox.SelectionStart = TextBox.Text.Length; }
+                    if (TextBox.Text.Contains(".")) { TextBox.Text = TextBox.Text.Replace(".", ""); TextBox.SelectionStart = TextBox.Text.Length; }
+                    if (Regex.IsMatch(TextBox.Text, "(\\D+)")) { TextBox.BorderBrush = new SolidColorBrush(Colors.Red); return; }
+                    if (Convert.ToInt32(TextBox.Text) < 1 || Convert.ToInt32(TextBox.Text) > 65535) { TextBox.BorderBrush = new SolidColorBrush(Colors.Red); return; }
+
+                    TextBox.BorderBrush = new SolidColorBrush(Colors.Green);
+                    vApplicationSettings["ServerPortAmbiPro"] = TextBox.Text;
+                };
             }
-            catch (Exception Ex) { await new MessageDialog("SettingsSaveError: " + Ex.Message, "MediaRemoteMe").ShowAsync(); }
+            catch (Exception Ex)
+            {
+                await new MessageDialog("SettingsSaveError: " + Ex.Message, App.vApplicationName).ShowAsync();
+            }
         }
 
         //Open WiFi Settings

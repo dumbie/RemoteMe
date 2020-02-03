@@ -116,14 +116,14 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="AppEvents.cs" />
+    <Compile Include="RemoteAmbiPro.cs" />
     <Compile Include="Nfc.cs" />
     <Compile Include="Help.cs" />
-    <Compile Include="MainCode.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Remote.cs" />
+    <Compile Include="Sockets\SocketSend.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Tiles.cs" />
   </ItemGroup>
@@ -140,6 +140,12 @@
     </Content>
     <Content Include="Assets\Menu\Keyboard.png" />
     <Content Include="Assets\Menu\Nfc.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Menu\Monitor.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Menu\AmbiPro.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Menu\Remote.png">

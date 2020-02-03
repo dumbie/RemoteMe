@@ -1,13 +1,13 @@
-MediaRemoteMe is a media remote control application,
+RemoteMe is a media remote control application,
 That will send media commands from your device to your PC like
 play/pause, next, previous and volume up, down and mute.
 
 | Installation Instructions
-1) Install the MediaRemoteMe application on your Windows device.
+1) Install the RemoteMe application on your Windows device.
 2) Download the Arnold Vink Tools on your PC (see Requirements).
 3) Extract the Arnold Vink Tools to any directory you want on your PC.
 4) Launch the Arnold Vink Tools (Runs hidden in the background and tray menu)
-5) Set your Arnold Vink Tools PC ip in the MediaRemoteMe application settings tab.
+5) Set your Arnold Vink Tools PC ip in the RemoteMe application settings tab.
 6) Enjoy having an easy to use a media remote for your PC.
 
 | Tips and tricks

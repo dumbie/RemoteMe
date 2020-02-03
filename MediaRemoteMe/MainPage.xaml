@@ -21,6 +21,14 @@
                         <Image Source="Assets/Menu/Keyboard.png" Width="60" HorizontalAlignment="Center"/>
                         <TextBlock Text="Keyboard" Style="{StaticResource TextBlockWhite}" HorizontalAlignment="Center"/>
                     </StackPanel>
+                    <StackPanel Name="menuButtonMonitor" Width="85" Height="85" Tapped="menuButtonMonitor_Tapped">
+                        <Image Source="Assets/Menu/Monitor.png" Width="60" HorizontalAlignment="Center"/>
+                        <TextBlock Text="Monitor" Style="{StaticResource TextBlockWhite}" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                    <StackPanel Name="menuButtonAmbiPro" Width="85" Height="85" Tapped="menuButtonAmbiPro_Tapped">
+                        <Image Source="Assets/Menu/AmbiPro.png" Width="60" HorizontalAlignment="Center"/>
+                        <TextBlock Text="AmbiPro" Style="{StaticResource TextBlockWhite}" HorizontalAlignment="Center"/>
+                    </StackPanel>
                     <StackPanel Name="menuButtonTiles" Width="85" Height="85" Tapped="menuButtonTiles_Tapped">
                         <Image Source="Assets/Menu/Tiles.png" Width="60" HorizontalAlignment="Center"/>
                         <TextBlock Text="Tiles" Style="{StaticResource TextBlockWhite}" HorizontalAlignment="Center"/>
@@ -235,12 +243,41 @@
 
                         <!-- Keyboard Switch -->
                         <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
-                            <Button Name="btn_KeyboardSwitchArrows" Style="{StaticResource ButtonAccent}" Content="Show Arrows" Click="btn_KeyboardSwitchArrows_Click" />
-                            <Button Name="btn_KeyboardSwitchNumeric" Style="{StaticResource ButtonAccent}" Content="Show Numeric" Margin="10,0,0,0" Click="btn_KeyboardSwitchNumeric_Click"/>
+                            <Button Name="btn_KeyboardSwitchArrows" Width="142" Style="{StaticResource ButtonAccent}" Content="Show Arrows" Click="btn_KeyboardSwitchArrows_Click" />
+                            <Button Name="btn_KeyboardSwitchNumeric" Width="142" Style="{StaticResource ButtonAccent}" Content="Show Numeric" Margin="11,0,0,0" Click="btn_KeyboardSwitchNumeric_Click"/>
                         </StackPanel>
 
                         <!-- Warning Text -->
                         <TextBlock Name="txt_ErrorConnect2" Visibility="Collapsed" Margin="0,10,0,0" Text="* It seems like you are currently using a Windows PC as client, please make sure that Arnold Vink Tools has run once as Administrator on this PC to allow the remote controls to be sent out to your server, if you have not done this once the remote might not work properly." Style="{StaticResource TextBlockAccent}" TextWrapping="Wrap"/>
+                    </StackPanel>
+                </ScrollViewer>
+            </Grid>
+
+            <!-- Page Monitor -->
+            <Grid Name="tab_Monitor" Visibility="Collapsed">
+                <ScrollViewer Style="{StaticResource ScrollViewerVertical}">
+                    <StackPanel Margin="10,10,10,10">
+                        <Button Name="btn_PrimaryMonitor" Style="{StaticResource ButtonAccent}" Content="Change to primary monitor" Margin="0,20,0,0" Click="btn_UnpinAllTiles_Click"/>
+                    </StackPanel>
+                </ScrollViewer>
+            </Grid>
+
+            <!-- Page AmbiPro -->
+            <Grid Name="tab_AmbiPro" Visibility="Collapsed">
+                <ScrollViewer Style="{StaticResource ScrollViewerVertical}">
+                    <StackPanel Margin="10,10,10,10">
+                        <Button Name="btn_AmbiPro_OnOff" Width="250" Style="{StaticResource ButtonAccent}" Content="Switch the leds on or off" Click="Btn_AmbiPro_OnOff_Click"/>
+
+                        <TextBlock Margin="0,20,0,0" Text="Change led brightness:" Style="{StaticResource TextBlockBlack}"/>
+                        <Slider Name="slider_AmbiPro_Brightness" Minimum="5" StepFrequency="5" Width="250" HorizontalAlignment="Left" ValueChanged="Slider_AmbiPro_Brightness_ValueChanged"/>
+
+                        <TextBlock Margin="0,10,0,0" Text="Change led display mode:" Style="{StaticResource TextBlockBlack}"/>
+                        <ComboBox Name="combobox_AmbiPro_Mode" Width="250" HorizontalAlignment="Left" PlaceholderText="Please select a mode..." Style="{StaticResource ComboBox}" SelectionChanged="Combobox_AmbiPro_Mode_SelectionChanged">
+                            <ComboBoxItem>Screen capture</ComboBoxItem>
+                            <ComboBoxItem>Solid color</ComboBoxItem>
+                            <ComboBoxItem>Color loop</ComboBoxItem>
+                            <ComboBoxItem>Color spectrum</ComboBoxItem>
+                        </ComboBox>
                     </StackPanel>
                 </ScrollViewer>
             </Grid>
@@ -407,11 +444,13 @@
 
                         <TextBlock Text="Server ip adres" Margin="0,15,0,0" Style="{StaticResource TextBlockPageTitleBlack}"/>
                         <TextBlock Text="Enter the PC's IP adres from where Arnold Vink Tools is running." TextWrapping="Wrap" Style="{StaticResource TextBlockLightGray}"/>
-                        <TextBox Name="txtbox_ServerIp" Style="{StaticResource TextBox}" InputScope="Number"/>
+                        <TextBox Name="txtbox_ServerIp" Width="250" Style="{StaticResource TextBox}" InputScope="Number"/>
 
-                        <TextBlock Text="Server port" Margin="0,15,0,0" Style="{StaticResource TextBlockPageTitleBlack}"/>
+                        <TextBlock Text="Server ports" Margin="0,15,0,0" Style="{StaticResource TextBlockPageTitleBlack}"/>
                         <TextBlock Text="Enter the server port Arnold Vink Tools is using on your PC." TextWrapping="Wrap" Style="{StaticResource TextBlockLightGray}"/>
-                        <TextBox Name="txtbox_ServerPort" Style="{StaticResource TextBox}" InputScope="Number"/>
+                        <TextBox Name="txtbox_ServerPortArnoldVink" Width="250" Style="{StaticResource TextBox}" InputScope="Number"/>
+                        <TextBlock Text="Enter the server port AmbiPro is using on your PC." TextWrapping="Wrap" Style="{StaticResource TextBlockLightGray}"/>
+                        <TextBox Name="txtbox_ServerPortAmbiPro" Width="250" Style="{StaticResource TextBox}" InputScope="Number"/>
 
                         <TextBlock Name="txt_ErrorWifi" Margin="0,15,0,0" Visibility="Collapsed" Text="* It seems like you are currently not connected to a network, please make sure that you are connected to the same network as where Arnold Vink Tools is running or that the correct server port is forwarded to your pc in the router for external internet access." Style="{StaticResource TextBlockAccent}" TextWrapping="Wrap"/>
                         <TextBlock Name="txt_ErrorPC" Margin="0,15,0,0" Visibility="Collapsed" Text="* It seems like you are currently using a Windows PC as client, please make sure that Arnold Vink Tools has run once as Administrator on this PC to allow the remote controls to be sent out to your server, if you have not done this once the remote might not work properly." Style="{StaticResource TextBlockAccent}" TextWrapping="Wrap"/>

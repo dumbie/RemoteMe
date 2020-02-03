@@ -21,7 +21,7 @@ namespace MediaRemoteMe
                 if (vProximityDevice != null)
                 {
                     Nullable<bool> MessageDialogResult = null;
-                    MessageDialog MessageDialog = new MessageDialog("After this message hold your NFC tag to this device's NFC area so the tag can be written.", "MediaRemoteMe");
+                    MessageDialog MessageDialog = new MessageDialog("After this message hold your NFC tag to this device's NFC area so the tag can be written.", App.vApplicationName);
                     MessageDialog.Commands.Add(new UICommand("Continue", new UICommandInvokedHandler((cmd) => MessageDialogResult = true)));
                     MessageDialog.Commands.Add(new UICommand("Cancel", new UICommandInvokedHandler((cmd) => MessageDialogResult = false)));
                     await MessageDialog.ShowAsync();
@@ -64,7 +64,7 @@ namespace MediaRemoteMe
                                         TimeoutTimer.Stop();
                                         sp_Nfc.Opacity = 1; sp_Nfc.IsHitTestVisible = true;
                                         app_StatusBar.Visibility = Visibility.Collapsed;
-                                        await new MessageDialog("The NFC tag has successfully been written to your tag, please note that this might not work with all NFC tags due to incompatibility issues or with some tags that are locked.", "MediaRemoteMe").ShowAsync();
+                                        await new MessageDialog("The NFC tag has successfully been written to your tag, please note that this might not work with all NFC tags due to incompatibility issues or with some tags that are locked.", App.vApplicationName).ShowAsync();
                                     });
                                 }
                             }
@@ -75,14 +75,14 @@ namespace MediaRemoteMe
                 {
                     vProximityDevice = null;
                     Nullable<bool> MessageDialogResult = null;
-                    MessageDialog MessageDialog = new MessageDialog("It seems like your device's NFC is disabled or does not support NFC, please make sure NFC is turned on before writing a new NFC tag, do you want to enable your device's NFC functionality?", "MediaRemoteMe");
+                    MessageDialog MessageDialog = new MessageDialog("It seems like your device's NFC is disabled or does not support NFC, please make sure NFC is turned on before writing a new NFC tag, do you want to enable your device's NFC functionality?", App.vApplicationName);
                     MessageDialog.Commands.Add(new UICommand("Enable", new UICommandInvokedHandler((cmd) => MessageDialogResult = true)));
                     MessageDialog.Commands.Add(new UICommand("Cancel", new UICommandInvokedHandler((cmd) => MessageDialogResult = false)));
                     await MessageDialog.ShowAsync();
                     if (MessageDialogResult == true) { await Launcher.LaunchUriAsync(new Uri("ms-settings:proximity")); }
                 }
             }
-            catch (Exception Ex) { await new MessageDialog("NFCError: " + Ex.Message, "MediaRemoteMe").ShowAsync(); }
+            catch (Exception Ex) { await new MessageDialog("NFCError: " + Ex.Message, App.vApplicationName).ShowAsync(); }
         }
     }
 }
